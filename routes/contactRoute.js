@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const validateToken = require('../middlewares/validateToken');
 const {
     testMiddleware,
     testMiddleware1
@@ -13,7 +14,7 @@ const {
     midTestContact
 } = require('../controllers/contactController');
 
-
+router.use(validateToken);
 router.route('/').get(getContacts);
 router.route('/:id').get(getContact);
 router.route('/').post(createContact);
